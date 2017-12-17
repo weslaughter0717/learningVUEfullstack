@@ -24,6 +24,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     historyApiFallback: true,
     hot: true,
     compress: true,
+    public: 'burgers-weslaughter0717.c9users.io',
     host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
