@@ -28,17 +28,17 @@ export default {
       password: ''
     }
   },
-  // watch: {
-  //   email (value) {
-  //     console.log('email', value)
-  //   }
-  // },
+  watch: {
+    email (value) {
+      console.log('email', value)
+    }
+  },
   methods: {
     async register () {
       var response = await AuthenticationService.register({
-      email: this.email,
-      password: this.password
-    })
+        email: this.email,
+        password: this.password
+      })
       console.log(response.data)
     }
   }
