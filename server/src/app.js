@@ -2,23 +2,27 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var morgan = require('morgan')
+var {sequelize} = require('./models')
+var config = require('./config/config')
 
 var app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-var PORT = 8081
+// var PORT = 8081
 
-app.post('/register', (req, res) => {
-  res.send({
-    message: 'Hello $(req.body.email) registered'
+require('./routes')(app)
+express.static('./build')
+sequelize.sync()
+  .then(() => {
+    app.listen(config.port)
+    console.log('server started on port')
   })
-})
 
-app.listen(8081, function () {
-  console.log('listening on port 2 ' + PORT)
-})
+// app.listen(8081, function () {
+//   console.log('listening on port 2 ' + PORT)----------------------------------//
+// })
 
 // // Create a generic function to handle requests and responses
 // function handleRequest(request, response) {
